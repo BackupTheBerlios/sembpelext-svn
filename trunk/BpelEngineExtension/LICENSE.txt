@@ -1,3 +1,13 @@
-LGPL
+This project is licensed under Lesser GNU General Public License (LGPL).
 
-License text!
+The project needs the following components in order to run the provided scenarios:
+- Apache Tomcat 5.5.26 (http://archive.apache.org/dist/tomcat/tomcat-5/v5.5.26/bin/apache-tomcat-5.5.26.zip)
+  License: Apache License V2.0 (see http://tomcat.apache.org/legal.html)
+- ActiveBPEL engine 4.1 (http://64.119.177.125/download/files/4.1/final/activebpel-4.1-bin.zip)
+  License: Lesser GNU General Public License (LGPL) (see http://www.activevos.com/community-open-source-license.php)
+- Protégé 3.4 built 130 (http://protege.stanford.edu/download/registered.html)
+  License: Mozilla Public License (see http://protege.stanford.edu/download/download.html)
+- OWL-S 1.1.0 beta (modified version provided for download in the 'files' section of this project)
+  License: MIT License (see http://www.mindswap.org/2004/owl-s/api/license.shtml)
+
+Please refere to the respective licenses of the various components.
