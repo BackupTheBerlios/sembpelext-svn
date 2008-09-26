@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry excluding="**" kind="src" output="src/test/resources" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/jena.jar"/>
+	<classpathentry kind="lib" path="lib/pellet.jar"/>
+	<classpathentry kind="lib" path="lib/protege.jar"/>
+	<classpathentry kind="lib" path="lib/protege-owl.jar"/>
+	<classpathentry kind="lib" path="lib/owl-s-1.1.0-beta-NIB-RWE.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/protege-pellet.jar"/>
+	<classpathentry kind="lib" path="lib/swrl-jess-bridge.jar"/>
+	<classpathentry kind="lib" path="lib/jess.jar"/>
+	<classpathentry kind="lib" path="lib/jaxen-1.1.1.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

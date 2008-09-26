@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="Composition4" soapui-version="2.0.2" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="ProjectSettings@projectRoot">E:\Qualipso\workspace\BpelEngineExtension\src\test\config</con:setting></con:settings><con:interface name="Composition4_PartnerLinkServiceBinding" bindingName="{urn:Composition4_extWsdlURN}Composition4_PartnerLinkServiceBinding" soapVersion="1_1" definition="http://localhost:8080/active-bpel/services/Composition4_PartnerLinkService?wsdl"><con:settings/><con:endpoints><con:endpoint>http://localhost:8080/active-bpel/services/Composition4_PartnerLinkService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="Composition4_processOperation" bindingOperationName="Composition4_processOperation" inputName="" receivesAttachments="false" sendsAttachments="false"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/active-bpel/services/Composition4_PartnerLinkService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ResidentSearchProfile>
+<rdf:RDF xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:j.0="http://localhost:8080/PublicServices/ResidentRegistry/ResidentRegistryOntology.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:nodeID="A0">
+    <j.0:hasBirth rdf:nodeID="A1"/>
+    <j.0:hasSurname rdf:nodeID="A2"/>
+    <j.0:hasGivenName rdf:nodeID="A3"/>
+    <rdf:type rdf:resource="http://localhost:8080/PublicServices/ResidentRegistry/ResidentRegistryOntology.owl#ResidentSearchProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A2">
+    <j.0:hasRef rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mayer</j.0:hasRef>
+    <rdf:type rdf:resource="http://localhost:8080/PublicServices/ResidentRegistry/ResidentRegistryOntology.owl#Surname"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A3">
+    <j.0:hasRef rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hans</j.0:hasRef>
+    <rdf:type rdf:resource="http://localhost:8080/PublicServices/ResidentRegistry/ResidentRegistryOntology.owl#GivenName"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A1">
+    <j.0:hasPlaceOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Berlin</j.0:hasPlaceOfBirth>
+    <j.0:hasDateOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1111-11-11</j.0:hasDateOfBirth>
+    <rdf:type rdf:resource="http://localhost:8080/PublicServices/ResidentRegistry/ResidentRegistryOntology.owl#Birth"/>
+  </rdf:Description>
+</rdf:RDF>
+      </ResidentSearchProfile>
+      <VitalRecordsDocumentType>
+<rdf:RDF xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:j.0="http://localhost:8080/PublicServices/VitalRecordsOffice/VitalRecordsOfficeOntology.owl#" xmlns:j.1="http://localhost:8080/PublicServices/StatisticalOffice/StatisticalOfficeOntology.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:nodeID="A0">
+    <j.1:hasIdentifier rdf:nodeID="A1"/>
+    <j.0:hasVitalRecordsDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Birth Certificate</j.0:hasVitalRecordsDescription>
+    <rdf:type rdf:resource="http://localhost:8080/PublicServices/VitalRecordsOffice/VitalRecordsOfficeOntology.owl#VitalRecordsDocumentType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A1">
+    <j.1:hasRef rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VitalRecords.BirthCertificate</j.1:hasRef>
+    <rdf:type rdf:resource="http://localhost:8080/PublicServices/StatisticalOffice/StatisticalOfficeOntology.owl#Identifier"/>
+  </rdf:Description>
+</rdf:RDF>
+      </VitalRecordsDocumentType>
+      <AccountNumber>
+<rdf:RDF xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:j.0="http://localhost:8080/PublicServices/PublicServicePayment/PublicServicePaymentOntology.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:nodeID="A0">
+    <j.0:hasRef rdf:datatype="http://www.w3.org/2001/XMLSchema#string">720105050</j.0:hasRef>
+    <rdf:type rdf:resource="http://localhost:8080/PublicServices/PublicServicePayment/PublicServicePaymentOntology.owl#AccountNumber"/>
+  </rdf:Description>
+</rdf:RDF>
+      </AccountNumber>
+      <BankID>
+<rdf:RDF xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:j.0="http://localhost:8080/PublicServices/PublicServicePayment/PublicServicePaymentOntology.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:nodeID="A0">
+    <j.0:hasRef rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10050000</j.0:hasRef>
+    <rdf:type rdf:resource="http://localhost:8080/PublicServices/PublicServicePayment/PublicServicePaymentOntology.owl#BankID"/>
+  </rdf:Description>
+</rdf:RDF>
+      </BankID>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request></con:call></con:operation><con:definitionCache rootPart="http://localhost:8080/active-bpel/services/Composition4_PartnerLinkService?wsdl" type="TEXT"><con:part><con:url>http://localhost:8080/active-bpel/services/Composition4_PartnerLinkService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="urn:Composition4_extWsdlURN" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:Composition4_extWsdlURN" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:processTypes="urn:processTypes" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:processTypes">
+      <xsd:complexType name="ResidentSearchProfile">
+        <xsd:sequence>
+          <xsd:element name="ResidentSearchProfileData" nillable="false" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ResidentInfo">
+        <xsd:sequence>
+          <xsd:element name="ResidentInfoData" nillable="false" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="processInputMessage">
+    <wsdl:part name="ResidentSearchProfile" type="processTypes:ResidentSearchProfile"/>
+  </wsdl:message>
+  <wsdl:message name="processOutputMessage">
+    <wsdl:part name="ResidentInfo" type="processTypes:ResidentInfo"/>
+  </wsdl:message>
+  <wsdl:portType name="Composition4_PortType">
+    <wsdl:operation name="Composition4_processOperation" parameterOrder="ResidentSearchProfile ResidentInfo">
+      <wsdl:input message="impl:processInputMessage" name="inputMessage"/>
+      <wsdl:output message="impl:processOutputMessage" name="outputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Composition4_PartnerLinkServiceBinding" type="impl:Composition4_PortType">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Composition4_processOperation">
+      <wsdlsoap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Composition4_PartnerLinkService">
+    <wsdl:port binding="impl:Composition4_PartnerLinkServiceBinding" name="Composition4_PartnerLinkServicePort">
+      <wsdlsoap:address location="http://localhost:8080/active-bpel/services/Composition4_PartnerLinkService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

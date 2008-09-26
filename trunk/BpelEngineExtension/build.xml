@@ -1,0 +1,213 @@
+<project name="Semantic BPEL Extension" default="prepare-integration-environment" basedir=".">
+
+<description>
+  See doc/index.html.  For manual operation, do 'ant deploy-bpr', 'ant deploy-sem-bpel-functions, modify aeEngineConfig.xml, restart server, then 'ant client'.
+</description>
+
+<!--   ENVIRONMENT SPECIFIC PROPERTIES - EDIT AS REQUIRED   -->
+<!-- webservice.dest is the root directory of your server.  -->
+<!-- For ActiveBPEL and other Tomcat-supported servers,     -->
+<!--  this is CATALINA_HOME.  Edit this property as needed. -->
+<property environment="env"/>
+<!-- property name="webservice.dest" value="${env.CATALINA_HOME}"/ -->
+<property name="webservice.dest" value="C:\temp\jakarta-tomcat-5.0.28\jakarta-tomcat-5.0.28"/>
+
+<!-- bpr.dest is the deployment location for your BPR file  -->
+<!-- Edit this property as needed.                          -->
+<property name="bpr.dest" value="${webservice.dest}/bpr"/>
+
+<!-- lib is the directory containing web service and other  -->
+<!--  needed jar files.  Edit this property as needed.      -->
+<property name="lib" value="${webservice.dest}/shared/lib"/>
+
+<!-- cf.jar.dest is the directory to which the custom       -->
+<!--  function jar will be copied.  Edit as required.       -->
+<property name="cf.jar.dest" location="${webservice.dest}/shared/lib"/>
+
+
+<!-- IMPORTANT !!!!                                         -->
+<!-- Remember to modify Engine Config to add the            -->
+<!--  function context defnition. See doc/index.html.       -->
+
+
+<property name="dist" location="target"/>
+<property name="src" location="src/main/java"/>
+<property name="build" location="target/classes"/>
+<property name="bpelTestCase1.archive" value="BpelTestCase1_CallSB.bpr"/>
+<property name="bpelTestCase2.archive" value="BpelTestCase2_CallSWS.bpr"/>
+<property name="bpelTestCase3.archive" value="BpelTestCase3_CallSWS_SB.bpr"/>
+<property name="bpelTestCase4.archive" value="BpelTestCase4_CallSWS_via_OWLS_API.bpr"/>
+<property name="cf.jar" value="aecf-semantic-bpel-ext.jar"/>
+
+<property name="webapp.dest" location="${webservice.dest}/webapps"/>
+<property name="example.ontologies.webapp.war" value="semanticBridgeExamples.war"/>
+
+
+
+<!-- Initialization -->
+<target name="timestamp">
+  <tstamp/>
+</target>
+
+
+<!-- Create the BPR for deployment -->
+<target name="create-bpr-BpelTestCase1" depends="timestamp">
+  <jar destfile="${dist}/${bpelTestCase1.archive}">
+     <!-- PDD Files. -->
+     <zipfileset file="src/test/resources/BpelTestCase1_CallSB/bpr/semanticBpelExtension.pdd" fullpath="META-INF/pdd/semanticBpelExtension/support/bpel_process/bpr/semanticBpelExtension.pdd" />
+     <!-- BPEL Files. -->
+     <zipfileset file="src/test/resources/BpelTestCase1_CallSB/bpel/semanticBpelExtension.bpel" fullpath="bpel/semanticBpelExtension/support/bpel_process/bpel/semanticBpelExtension.bpel" />
+     <!-- WSDL Files. -->
+     <zipfileset file="src/test/resources/BpelTestCase1_CallSB/wsdl/semanticBpelExtension.wsdl" fullpath="wsdl/semanticBpelExtension/support/bpel_process/wsdl/semanticBpelExtension.wsdl" />
+     <!-- Ontology Files. --> 
+     <fileset dir="src/test/resources/">
+        <exclude name="**/CVS/**" />
+        <include name="ontologies/**/*.*" />
+     </fileset>	
+     <!-- WSDL Catalog. -->
+     <zipfileset file="src/test/resources/BpelTestCase1_CallSB/META-INF/wsdlCatalog.xml" fullpath="META-INF/wsdlCatalog.xml" />
+  </jar>
+</target>
+
+<target name="create-bpr-BpelTestCase2" depends="timestamp">
+  <jar destfile="${dist}/${bpelTestCase2.archive}">
+     <!-- PDD Files. -->
+     <zipfileset file="src/test/resources/BpelTestCase2_CallSWS/BpelTestCase2_CallSWS.pdd" fullpath="META-INF/pdd/BpelTestCase2_CallSWS/BpelTestCase2_CallSWS.pdd" />
+     <!-- BPEL Files. -->
+     <zipfileset file="src/test/resources/BpelTestCase2_CallSWS/BpelTestCase2_CallSWS.bpel" fullpath="bpel/BpelTestCase2_CallSWS/BpelTestCase2_CallSWS.bpel" />
+     <!-- WSDL Files. -->
+     <zipfileset file="src/test/resources/BpelTestCase2_CallSWS/WSDL/BpelTestCase2_CallSWS.wsdl" fullpath="wsdl/BpelTestCase2_CallSWS/WSDL/BpelTestCase2_CallSWS.wsdl" />
+     <!-- Ontology Files. --> 
+     <zipfileset dir="src/test/resources/BpelTestCase2_CallSWS/grounding" prefix="wsdl/BpelTestCase2_CallSWS/grounding">
+        <exclude name="**/CVS/**" />
+        <include name="**/*.xslt" />
+     </zipfileset>	
+     <zipfileset file="src/test/resources/BpelTestCase2_CallSWS/META-INF/catalog.xml" fullpath="META-INF/catalog.xml" />
+  </jar>
+</target>
+	
+	<target name="create-bpr-BpelTestCase3" depends="timestamp">
+	  <jar destfile="${dist}/${bpelTestCase3.archive}">
+	     <!-- PDD Files. -->
+	     <zipfileset file="src/test/resources/BpelTestCase3_CallSWS_SB/BpelTestCase3_CallSWS_SB.pdd" fullpath="META-INF/pdd/BpelTestCase3_CallSWS_SB/BpelTestCase3_CallSWS_SB.pdd" />
+	     <!-- BPEL Files. -->
+	     <zipfileset file="src/test/resources/BpelTestCase3_CallSWS_SB/BpelTestCase3_CallSWS_SB.bpel" fullpath="bpel/BpelTestCase3_CallSWS_SB/BpelTestCase3_CallSWS_SB.bpel" />
+	     <!-- WSDL Files. -->
+	     <zipfileset file="src/test/resources/BpelTestCase3_CallSWS_SB/WSDL/BpelTestCase3_CallSWS_SB.wsdl" fullpath="wsdl/BpelTestCase3_CallSWS_SB/WSDL/BpelTestCase3_CallSWS_SB.wsdl" />
+	    <!-- XSLT grounding Files. --> 
+	    <zipfileset dir="src/test/resources/BpelTestCase3_CallSWS_SB/grounding" prefix="wsdl/BpelTestCase3_CallSWS_SB/grounding">
+	       <exclude name="**/CVS/**" />
+	       <include name="**/*.xslt" />
+	    </zipfileset>	
+	    <!-- OWL bridge Files. --> 
+	    <zipfileset dir="src/test/resources/BpelTestCase3_CallSWS_SB/bridge" prefix="wsdl/BpelTestCase3_CallSWS_SB/bridge">
+	       <exclude name="**/CVS/**" />
+	       <include name="**/*.owl" />
+	    </zipfileset>	     
+	    <!-- OWL dataflow Files. --> 
+	    <zipfileset dir="src/test/resources/BpelTestCase3_CallSWS_SB/dataflow" prefix="wsdl/BpelTestCase3_CallSWS_SB/dataflow">
+	       <exclude name="**/CVS/**" />
+	       <include name="**/*.owl" />
+	    </zipfileset>	  	
+	  	<zipfileset file="src/test/resources/BpelTestCase3_CallSWS_SB/META-INF/catalog.xml" fullpath="META-INF/catalog.xml" />
+	  </jar>
+	</target>
+
+	<target name="create-bpr-BpelTestCase4" depends="timestamp">
+	  <jar destfile="${dist}/${bpelTestCase4.archive}">
+	     <!-- PDD Files. -->
+	     <zipfileset file="src/test/resources/BpelTestCase4_CallSWS/BpelTestCase4_CallSWS.pdd" fullpath="META-INF/pdd/BpelTestCase4_CallSWS/BpelTestCase4_CallSWS.pdd" />
+	     <!-- BPEL Files. -->
+	     <zipfileset file="src/test/resources/BpelTestCase4_CallSWS/BpelTestCase4_CallSWS.bpel" fullpath="bpel/BpelTestCase4_CallSWS/BpelTestCase4_CallSWS.bpel" />
+	     <!-- WSDL Files. -->
+	     <zipfileset file="src/test/resources/BpelTestCase4_CallSWS/WSDL/BpelTestCase4_CallSWS.wsdl" fullpath="wsdl/BpelTestCase4_CallSWS/WSDL/BpelTestCase4_CallSWS.wsdl" />
+	    <!-- OWL bridge Files. --> 
+	    <zipfileset dir="src/test/resources/BpelTestCase4_CallSWS/bridge" prefix="wsdl/BpelTestCase4_CallSWS/bridge">
+	       <exclude name="**/CVS/**" />
+	       <include name="**/*.owl" />
+	    </zipfileset>	     
+	    <!-- OWL dataflow Files. --> 
+	    <!--zipfileset dir="src/test/resources/BpelTestCase4_CallSWS/dataflow" prefix="wsdl/BpelTestCase4_CallSWS/dataflow">
+	       <exclude name="**/CVS/**" />
+	       <include name="**/*.owl" />
+	    </zipfileset -->  	
+	   <zipfileset file="src/test/resources/BpelTestCase4_CallSWS/META-INF/catalog.xml" fullpath="META-INF/catalog.xml" />
+	  </jar>
+	</target>
+
+<!-- Deploy the BPEL Process BpelTestCase1, which demonstrates the call 
+of a Semantic Bridge. -->
+<target name="deploy-bpr-BpelTestCase1" depends="create-bpr-BpelTestCase1"
+   description="deploy BPEL process">
+  <copy file="${dist}/${bpelTestCase1.archive}" todir="${bpr.dest}"/>
+</target>
+
+
+<!-- Deploy the BPEL Process BpelTestCase2, which demonstrates the call 
+of a Semantic Web Service. -->
+<target name="deploy-bpr-BpelTestCase2" depends="create-bpr-BpelTestCase2"
+   description="deploy BPEL process">
+  <copy file="${dist}/${bpelTestCase2.archive}" todir="${bpr.dest}"/>
+</target>
+
+	
+<!-- Deploy the BPEL Process BpelTestCase3, which demonstrates the 
+sequential call of Semantic Web Services and Semantic Bridges. -->
+<target name="deploy-bpr-BpelTestCase3" depends="create-bpr-BpelTestCase3"
+   description="deploy BPEL process">
+  <copy file="${dist}/${bpelTestCase3.archive}" todir="${bpr.dest}"/>
+</target>
+	
+	
+<!-- Deploy the BPEL Process BpelTestCase4, which demonstrates the 
+sequential call of Semantic Web Services utilizing the OWL-S-API. -->
+<target name="deploy-bpr-BpelTestCase4" depends="create-bpr-BpelTestCase4"
+   description="Deploy the BPEL Process BpelTestCase4, which demonstrates the 
+	sequential call of Semantic Web Services utilizing the OWL-S-API.">
+  <copy file="${dist}/${bpelTestCase4.archive}" todir="${bpr.dest}"/>
+</target>
+	
+	
+<!-- Create the custom functions jar -->
+<target name="create-sem-bpel-functions">
+  <jar jarfile="${cf.jar}">
+    <fileset dir="${build}" >
+      <exclude name="**/CVS/**" />
+      <include name="org/qualipso/interop/semantics/procintegration/bpel/engine/extension/*.class" />
+    </fileset>
+  </jar>
+</target>
+
+<!-- Deploy the custom functions jar -->
+<target name="deploy-sem-bpel-functions" depends="create-sem-bpel-functions"
+   description="deploy custom semantic bpel functions to tomcat server">
+  <copy file="${cf.jar}" todir="${cf.jar.dest}"/>
+  <echo message="DON'T FORGET to edit aeEngineConfig.xml,"/>
+  <echo message=" or use the engine admin console to add"/>
+  <echo message=" your custom semantic bpel function reference."/>
+</target>
+
+<!-- Create the example ontology webapp for deployment -->
+<target name="create-example-ontology-webapp" depends="timestamp">
+  <jar destfile="${dist}/${example.ontologies.webapp.war}">
+     <fileset dir="src/test/resources/semanticBridgeExamples">
+        <exclude name="**/CVS/**" />
+        <include name="**/*.*" />
+     </fileset>	
+  </jar>
+</target>
+
+<!-- Deploy the example ontology webapp -->
+<target name="deploy-example-ontology-webapp" depends="create-example-ontology-webapp"
+   description="deploy example ontology webapp">
+  <copy file="${dist}/${example.ontologies.webapp.war}" todir="${webapp.dest}"/>
+</target>
+
+<!-- Install all custom components into tomcat container
+	necessary for running the integration tests -->
+<target name="prepare-integration-environment" 
+		depends="deploy-bpr-BpelTestCase1, deploy-example-ontology-webapp, deploy-bpr-BpelTestCase2, deploy-bpr-BpelTestCase3, deploy-bpr-BpelTestCase4"
+		description="Install all custom components into tomcat container necessary for running the integration tests">
+</target>
+
+</project>
