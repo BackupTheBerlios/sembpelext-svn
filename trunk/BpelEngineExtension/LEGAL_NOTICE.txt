@@ -1,3 +1,6 @@
+Legal Notice:
+---------------
+
 This project is licensed under Lesser GNU General Public License (LGPL).
 
 The project needs the following components in order to run the provided scenarios:
