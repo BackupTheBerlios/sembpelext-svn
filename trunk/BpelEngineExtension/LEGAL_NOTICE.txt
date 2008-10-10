@@ -1,9 +1,39 @@
 Legal Notice:
 ---------------
 
-This project is licensed under Lesser GNU General Public License (LGPL).
+IST-FP6-034763 QualiPSo: QualiPSo is a unique alliance
+of European, Brazilian and Chinese ICT industry players,
+SMEs, governments and academics to help industries and
+governments fuel innovation and competitiveness with Open
+Source software. To meet that goal, the QualiPSo consortium
+intends to define and implement the technologies, processes
+and policies to facilitate the development and use of Open
+Source software components, with the same level of trust
+traditionally offered by proprietary software. QualiPSo is
+partially funded by the European Commission under EU’s sixth
+framework program (FP6), as part of the Information Society
+Technologies (IST) initiative. 
 
-The project needs the following components in order to run the provided scenarios:
+This program has been created as part of the QualiPSo work
+package on "Semantic Interoperability". The basic idea of this work    
+package is to demonstrate how semantic technologies can be used to 
+cope with the diversity and heterogeneity of software and services 
+in the OSS domain.
+
+You can redistribute this program and/or modify it under the terms 
+of the GNU Lesser General Public License version 3 (LGPL v3.0).
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+
+You should have received a copy of the LGPL
+along with this program; if not, please have a look at
+http://www.gnu.org/licenses/lgpl.html 
+to obtain the full license text.
+
+
+The project needs the following components:
 - Apache Tomcat 5.5.26 (http://archive.apache.org/dist/tomcat/tomcat-5/v5.5.26/bin/apache-tomcat-5.5.26.zip)
   License: Apache License V2.0 (see http://tomcat.apache.org/legal.html)
 - ActiveBPEL engine 4.1 (http://64.119.177.125/download/files/4.1/final/activebpel-4.1-bin.zip)
@@ -13,4 +43,4 @@ The project needs the following components in order to run the provided scenario
 - OWL-S 1.1.0 beta (modified version provided for download in the 'files' section of this project)
   License: MIT License (see http://www.mindswap.org/2004/owl-s/api/license.shtml)
 
-Please refere to the respective licenses of the various components.
+Please refer to the corresponding licenses of the various components.
